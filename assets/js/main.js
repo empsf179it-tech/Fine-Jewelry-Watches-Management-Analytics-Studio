@@ -53,3 +53,36 @@ document.querySelectorAll('[data-tilt]').forEach(card=>{
  });
  card.addEventListener('mouseleave',()=>card.style.transform='');
 });
+
+const scrollTopBtn = document.querySelector('.scroll-to-top');
+if(scrollTopBtn){
+ window.addEventListener('scroll', ()=>{
+  if(window.scrollY > 300) scrollTopBtn.classList.add('visible');
+  else scrollTopBtn.classList.remove('visible');
+ });
+ scrollTopBtn.addEventListener('click', e => {
+  e.preventDefault();
+  window.scrollTo({top: 0, behavior: 'smooth'});
+ });
+}
+
+// Modal Logic
+const demoBtns = document.querySelectorAll('.nav-cta');
+const modal = document.getElementById('demoModal');
+if (modal) {
+  const closeBtn = modal.querySelector('.modal-close');
+  demoBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      modal.classList.add('active');
+    });
+  });
+  closeBtn.addEventListener('click', () => {
+    modal.classList.remove('active');
+  });
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.classList.remove('active');
+    }
+  });
+}
